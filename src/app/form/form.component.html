@@ -1,25 +1,43 @@
 <div class="container mt-5">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <form #singUpForm="ngForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
                     <label for="username">Username*</label>
-                    <input required ngModel name="UserName" #userName="ngModel" type="text" class="form-control">
+                    <input required ngModel name="UserName" #userName="ngModel" type="text" class="form-control"
+                        pattern="[A-Za-z]+" minlength=7>
 
-                    <strong class="text-danger" *ngIf="userName.touched && userName.invalid">Username is required!!@
-                        Field</strong>
+                    <strong class="text-primary" *ngIf="userName.touched && userName.hasError('required')">Username is
+                        required Field</strong>
+
+                    <strong *ngIf="userName.dirty && userName.hasError('pattern')" class="text-danger">Username should
+                        have only alphabet</strong>
+
+                    <strong class="text-primary"
+                        *ngIf="userName.dirty && userName.hasError('minlength') && userName.errors?.['minlength']">
+                        Minimum length should be {{ userName.errors?.['minlength'].requiredLength }} And actual length is {{ userName.errors?.['minlength'].actualLength }}
+                    </strong>
 
                 </div>
-                 
+
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input required ngModel name="email"  #email="ngModel" text="text" class="form-control">
-                    <strong class="text text-danger" *ngIf="email.touched && email.invalid">Email required</strong>
+                    <input required ngModel 
+                     name="email"
+                     #email="ngModel" 
+                     text="text" 
+                     class="form-control" 
+                     pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"  >
+
+
+                    <strong class="text text-primary" *ngIf="email.touched && email.invalid">Invalid Email</strong>
                 </div>
+                
+                  <strong *ngIf="email.dirty && email.hasError('pattern')" class="text-danger">Please Enter valid email adress</strong>
 
-                 <button
-                 [disabled]="singUpForm.invalid" type="submit" class="btn btn-primary">Sign Up</button>
-
+                  <div>
+                <button [disabled]="singUpForm.invalid" type="submit" class="btn btn-primary">Sign Up</button>
+                  </div>
 
             </form>
         </div>

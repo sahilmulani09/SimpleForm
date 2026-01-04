@@ -1,0 +1,39 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #74ebd5, #9face6);
+  padding-top: 40px;
+}
+
+
+/* form container */
+.container {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 5px;
+}
+
+/* form labels */
+label {
+  font-weight: 600;
+  color: #000000;
+}
+
+/* input fields */
+.form-control {
+  border-radius: 6px;
+  margin-bottom: 5px;
+}
+
+/* error messages */
+strong {
+  font-size: 13px;
+  display: block;
+}
+
+/* submit button */
+button {
+  margin-top: 15px;
+  width: 100%;
+  border-radius: 6px;
+}
